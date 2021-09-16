@@ -47,7 +47,7 @@ services:
     container_name: symfony-api-platform-db
     image: mysql:8.0
     ports:
-      - 36000:3306
+      - 3306:3306
     environment:
       MYSQL_DATABASE: symfony_db
       MYSQL_USER: user
