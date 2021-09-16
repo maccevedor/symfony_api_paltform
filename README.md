@@ -7,7 +7,7 @@ composer require symfony/security-core symfony/uid
 composer require lexik/jwt-authentication-bundle
 
 // Clear Cache
-sfc:c
+sf c:c
 
 sf debug:container | grep JsonException
 sf make:migration
