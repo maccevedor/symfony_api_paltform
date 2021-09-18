@@ -16,5 +16,5 @@ services:
       - symfony-api-platform-network
 
 networks:
-  symfon-api-platform-network:
+  symfony-api-platform-network:
     external: true
