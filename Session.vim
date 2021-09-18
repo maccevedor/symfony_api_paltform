@@ -10,7 +10,7 @@ endif
 set shortmess=aoO
 badd +1 .gitignore
 badd +12 README.md
-badd +12 api/composer.json
+badd +2 api/composer.json
 badd +3 api/docker/php/xdebug-linux.ini
 badd +54 api/Makefile
 badd +19 api/.env
@@ -47,12 +47,22 @@ badd +16 api/config/api_platform/resources/User.yaml
 badd +0 mailer/docker/php/Dockerfile\ php.ini
 badd +31 mailer/docker/php/Dockerfile
 badd +11 mailer/docker/php/php.ini
-badd +47 mailer/docker-compose.yml
+badd +7 mailer/docker-compose.yml
 badd +1 mailer/Makefile
-badd +7 mailer/composer.json
+badd +33 mailer/composer.json
+badd +3 mailer/src/Kernel.php
+badd +4 mailer/bin/console
+badd +0 mailer/public/index.php
+badd +0 rabbitmq/docker-compose.yml
 argglobal
 %argdel
 set stal=2
+tabnew
+tabnew
+tabnew
+tabnew
+tabnew
+tabnew
 tabnew
 tabrewind
 edit README.md
@@ -67,17 +77,16 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 12 - ((11 * winheight(0) + 28) / 56)
+let s:l = 19 - ((18 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 12
+keepjumps 19
 normal! 0
 lcd ~/WWW/symfony_api_paltform
 tabnext
 edit ~/WWW/symfony_api_paltform/mailer/composer.json
 argglobal
-balt ~/WWW/symfony_api_paltform/README.md
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -88,14 +97,136 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 27) / 55)
+let s:l = 33 - ((27 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1
+keepjumps 33
+normal! 020|
+lcd ~/WWW/symfony_api_paltform
+tabnext
+edit ~/WWW/symfony_api_paltform/mailer/src/Kernel.php
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 3 - ((2 * winheight(0) + 27) / 55)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 3
+normal! 016|
+lcd ~/WWW/symfony_api_paltform
+tabnext
+edit ~/WWW/symfony_api_paltform/mailer/bin/console
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 4 - ((3 * winheight(0) + 27) / 55)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 4
+normal! 010|
+lcd ~/WWW/symfony_api_paltform
+tabnext
+edit ~/WWW/symfony_api_paltform/mailer/public/index.php
+argglobal
+balt ~/WWW/symfony_api_paltform/mailer/bin/console
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 3 - ((2 * winheight(0) + 27) / 55)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 3
+normal! 010|
+lcd ~/WWW/symfony_api_paltform
+tabnext
+edit ~/WWW/symfony_api_paltform/api/composer.json
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 2 - ((1 * winheight(0) + 27) / 55)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 2
 normal! 0
 lcd ~/WWW/symfony_api_paltform
-tabnext 2
+tabnext
+edit ~/WWW/symfony_api_paltform/mailer/docker-compose.yml
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 7 - ((6 * winheight(0) + 27) / 55)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 7
+normal! 0
+lcd ~/WWW/symfony_api_paltform
+tabnext
+edit ~/WWW/symfony_api_paltform/rabbitmq/docker-compose.yml
+argglobal
+balt ~/WWW/symfony_api_paltform/mailer/docker-compose.yml
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 19 - ((18 * winheight(0) + 27) / 55)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 19
+normal! 09|
+lcd ~/WWW/symfony_api_paltform
+tabnext 8
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

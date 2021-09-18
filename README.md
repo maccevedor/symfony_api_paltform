@@ -13,3 +13,8 @@ sf debug:container | grep JsonException
 sf make:migration
 //Migration without ask
 sf d:m:m -n
+
+
+//Mailer
+composer require symfony/amqp-messenger symfony/serializer symfony/property-access orm symfony/doctrine-messenger
+composer require symfony/amqp-messenger
