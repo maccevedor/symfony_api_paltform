@@ -18,3 +18,8 @@ sf d:m:m -n
 //Mailer
 composer require symfony/amqp-messenger symfony/serializer symfony/property-access orm symfony/doctrine-messenger
 composer require symfony/amqp-messenger
+composer require symfony/twig-bundle
+composer require symfony/mailer
+
+sf messenger:setup-transports
+

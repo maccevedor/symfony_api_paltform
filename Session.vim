@@ -9,7 +9,7 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +1 .gitignore
-badd +12 README.md
+badd +20 README.md
 badd +2 api/composer.json
 badd +3 api/docker/php/xdebug-linux.ini
 badd +54 api/Makefile
@@ -44,22 +44,25 @@ badd +33 api/src/Repository/UserRepository.php
 badd +1 api/src/Kernel.php
 badd +18 api/config/api_platform/serialization/User.yaml
 badd +16 api/config/api_platform/resources/User.yaml
-badd +0 mailer/docker/php/Dockerfile\ php.ini
+badd +1 mailer/docker/php/Dockerfile\ php.ini
 badd +31 mailer/docker/php/Dockerfile
 badd +11 mailer/docker/php/php.ini
-badd +7 mailer/docker-compose.yml
+badd +10 mailer/docker-compose.yml
 badd +1 mailer/Makefile
 badd +33 mailer/composer.json
 badd +3 mailer/src/Kernel.php
 badd +4 mailer/bin/console
-badd +0 mailer/public/index.php
-badd +0 rabbitmq/docker-compose.yml
+badd +3 mailer/public/index.php
+badd +5 rabbitmq/docker-compose.yml
+badd +41 mailer/src/Message/UserRegisteredMessage.php
+badd +25 mailer/.env
+badd +4 term://~/WWW/symfony_api_paltform//16484:ranger\ --choosefiles=/tmp/chosenfile\ \"/home/maccevedor/WWW/symfony_api_paltform/mailer\"
+badd +55 term://~/WWW/symfony_api_paltform//16532:ranger\ --choosefiles=/tmp/chosenfile\ \"/home/maccevedor/WWW/symfony_api_paltform/mailer\"
+badd +10 mailer/src/Messenger/RoutingKey.php
+badd +21 mailer/config/packages/messenger.yaml
 argglobal
 %argdel
 set stal=2
-tabnew
-tabnew
-tabnew
 tabnew
 tabnew
 tabnew
@@ -77,15 +80,15 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 19 - ((18 * winheight(0) + 27) / 55)
+let s:l = 20 - ((19 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 19
-normal! 0
+keepjumps 20
+normal! 039|
 lcd ~/WWW/symfony_api_paltform
 tabnext
-edit ~/WWW/symfony_api_paltform/mailer/composer.json
+edit ~/WWW/symfony_api_paltform/mailer/src/Message/UserRegisteredMessage.php
 argglobal
 setlocal fdm=manual
 setlocal fde=0
@@ -97,118 +100,16 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 33 - ((27 * winheight(0) + 27) / 55)
+let s:l = 41 - ((40 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 33
-normal! 020|
-lcd ~/WWW/symfony_api_paltform
-tabnext
-edit ~/WWW/symfony_api_paltform/mailer/src/Kernel.php
-argglobal
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 3 - ((2 * winheight(0) + 27) / 55)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 3
-normal! 016|
-lcd ~/WWW/symfony_api_paltform
-tabnext
-edit ~/WWW/symfony_api_paltform/mailer/bin/console
-argglobal
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 4 - ((3 * winheight(0) + 27) / 55)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 4
-normal! 010|
-lcd ~/WWW/symfony_api_paltform
-tabnext
-edit ~/WWW/symfony_api_paltform/mailer/public/index.php
-argglobal
-balt ~/WWW/symfony_api_paltform/mailer/bin/console
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 3 - ((2 * winheight(0) + 27) / 55)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 3
-normal! 010|
-lcd ~/WWW/symfony_api_paltform
-tabnext
-edit ~/WWW/symfony_api_paltform/api/composer.json
-argglobal
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 2 - ((1 * winheight(0) + 27) / 55)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 2
-normal! 0
-lcd ~/WWW/symfony_api_paltform
-tabnext
-edit ~/WWW/symfony_api_paltform/mailer/docker-compose.yml
-argglobal
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 7 - ((6 * winheight(0) + 27) / 55)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 7
+keepjumps 41
 normal! 0
 lcd ~/WWW/symfony_api_paltform
 tabnext
 edit ~/WWW/symfony_api_paltform/rabbitmq/docker-compose.yml
 argglobal
-balt ~/WWW/symfony_api_paltform/mailer/docker-compose.yml
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -219,14 +120,56 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 19 - ((18 * winheight(0) + 27) / 55)
+let s:l = 5 - ((4 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 19
-normal! 09|
+keepjumps 5
+normal! 01|
 lcd ~/WWW/symfony_api_paltform
-tabnext 8
+tabnext
+edit ~/WWW/symfony_api_paltform/mailer/src/Messenger/RoutingKey.php
+argglobal
+balt ~/WWW/symfony_api_paltform/rabbitmq/docker-compose.yml
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 10 - ((9 * winheight(0) + 27) / 55)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 10
+normal! 0
+lcd ~/WWW/symfony_api_paltform
+tabnext
+edit ~/WWW/symfony_api_paltform/mailer/config/packages/messenger.yaml
+argglobal
+balt ~/WWW/symfony_api_paltform/mailer/src/Messenger/RoutingKey.php
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 14 - ((12 * winheight(0) + 27) / 55)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 14
+normal! 0
+lcd ~/WWW/symfony_api_paltform
+tabnext 5
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
