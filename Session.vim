@@ -9,7 +9,7 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +1 .gitignore
-badd +20 README.md
+badd +23 README.md
 badd +2 api/composer.json
 badd +3 api/docker/php/xdebug-linux.ini
 badd +54 api/Makefile
@@ -45,9 +45,9 @@ badd +1 api/src/Kernel.php
 badd +18 api/config/api_platform/serialization/User.yaml
 badd +16 api/config/api_platform/resources/User.yaml
 badd +1 mailer/docker/php/Dockerfile\ php.ini
-badd +31 mailer/docker/php/Dockerfile
+badd +27 mailer/docker/php/Dockerfile
 badd +11 mailer/docker/php/php.ini
-badd +10 mailer/docker-compose.yml
+badd +5 mailer/docker-compose.yml
 badd +1 mailer/Makefile
 badd +33 mailer/composer.json
 badd +3 mailer/src/Kernel.php
@@ -55,14 +55,32 @@ badd +4 mailer/bin/console
 badd +3 mailer/public/index.php
 badd +5 rabbitmq/docker-compose.yml
 badd +41 mailer/src/Message/UserRegisteredMessage.php
-badd +25 mailer/.env
+badd +20 mailer/.env
 badd +4 term://~/WWW/symfony_api_paltform//16484:ranger\ --choosefiles=/tmp/chosenfile\ \"/home/maccevedor/WWW/symfony_api_paltform/mailer\"
 badd +55 term://~/WWW/symfony_api_paltform//16532:ranger\ --choosefiles=/tmp/chosenfile\ \"/home/maccevedor/WWW/symfony_api_paltform/mailer\"
 badd +10 mailer/src/Messenger/RoutingKey.php
 badd +21 mailer/config/packages/messenger.yaml
+badd +0 mailer/src/Message/UserRegisteredMessage.php
+badd +1 api/src/Messenger/Message/UserRegisteredMessage.php
+badd +1 api/src/Messenger/RoutingKey.php
+badd +4 api/config/packages/messenger.yaml
+badd +41 mailer/src/Messenger/Message/UserRegisteredMessage.php
+badd +16 mailer/src/Serializer/Messenger/EventSerializer.php
+badd +1 mailer/src/Service/MailerService.php
+badd +2 mailer/src/Service/ClientRoute.php
+badd +10 mailer/Templating/TwigTemplate.php
+badd +12 mailer/src/templates/base.html.twig
+badd +8 mailer/src/templates/user/register.twig
+badd +3 mailer/templates/user/register.twig
+badd +1 mailer/src/Templating/TwigTemplate.php
+badd +26 mailer/src/Service/Mailer/MailerService.php
+badd +7 mailer/config/services.yaml
+badd +0 mailer/src/Service/Mailer/ClientRoute.php
+badd +30 mailer/src/Messenger/Handler/UserRegisteredMessageHandler.php
 argglobal
 %argdel
 set stal=2
+tabnew
 tabnew
 tabnew
 tabnew
@@ -80,36 +98,37 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
+let s:l = 22 - ((21 * winheight(0) + 27) / 55)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 22
+normal! 0
+lcd ~/WWW/symfony_api_paltform
+tabnext
+edit ~/WWW/symfony_api_paltform/mailer/.env
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
 let s:l = 20 - ((19 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 20
-normal! 039|
-lcd ~/WWW/symfony_api_paltform
-tabnext
-edit ~/WWW/symfony_api_paltform/mailer/src/Message/UserRegisteredMessage.php
-argglobal
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 41 - ((40 * winheight(0) + 27) / 55)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 41
 normal! 0
 lcd ~/WWW/symfony_api_paltform
 tabnext
-edit ~/WWW/symfony_api_paltform/rabbitmq/docker-compose.yml
+edit ~/WWW/symfony_api_paltform/mailer/config/services.yaml
 argglobal
+balt ~/WWW/symfony_api_paltform/mailer/.env
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -120,17 +139,16 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 5 - ((4 * winheight(0) + 27) / 55)
+let s:l = 7 - ((6 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 5
-normal! 01|
+keepjumps 7
+normal! 011|
 lcd ~/WWW/symfony_api_paltform
 tabnext
-edit ~/WWW/symfony_api_paltform/mailer/src/Messenger/RoutingKey.php
+edit ~/WWW/symfony_api_paltform/mailer/src/Service/Mailer/MailerService.php
 argglobal
-balt ~/WWW/symfony_api_paltform/rabbitmq/docker-compose.yml
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -141,17 +159,38 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 10 - ((9 * winheight(0) + 27) / 55)
+let s:l = 26 - ((25 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 10
+keepjumps 26
+normal! 02|
+lcd ~/WWW/symfony_api_paltform
+tabnext
+edit ~/WWW/symfony_api_paltform/README.md
+argglobal
+balt ~/WWW/symfony_api_paltform/mailer/src/Messenger/Handler/UserRegisteredMessageHandler.php
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 2 - ((1 * winheight(0) + 27) / 55)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 2
 normal! 0
 lcd ~/WWW/symfony_api_paltform
 tabnext
-edit ~/WWW/symfony_api_paltform/mailer/config/packages/messenger.yaml
+edit ~/WWW/symfony_api_paltform/mailer/src/Service/Mailer/ClientRoute.php
 argglobal
-balt ~/WWW/symfony_api_paltform/mailer/src/Messenger/RoutingKey.php
+balt ~/WWW/symfony_api_paltform/mailer/src/Service/Mailer/MailerService.php
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -162,11 +201,11 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 14 - ((12 * winheight(0) + 27) / 55)
+let s:l = 1 - ((0 * winheight(0) + 27) / 55)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 14
+keepjumps 1
 normal! 0
 lcd ~/WWW/symfony_api_paltform
 tabnext 5
