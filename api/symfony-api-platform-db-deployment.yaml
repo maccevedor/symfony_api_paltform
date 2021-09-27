@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: symfony-api-platform-db
+  name: symfony-api-platform-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: symfony-api-platform-db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/symfony-api-platform-network: "true"
+        io.kompose.service: symfony-api-platform-db
+    spec:
+      containers:
+        - args:
+            - mysqld
+            - --sql_mode=STRICT_ALL_TABLES,NO_ENGINE_SUBSTITUTION
+          env:
+            - name: MYSQL_DATABASE
+              value: symfony_db
+            - name: MYSQL_PASSWORD
+              value: password
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+            - name: MYSQL_USER
+              value: user
+          image: mysql:8.0
+          name: symfony-api-platform-db
+          ports:
+            - containerPort: 3306
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: symfony-api-platform-db-data
+      restartPolicy: Always
+      volumes:
+        - name: symfony-api-platform-db-data
+          persistentVolumeClaim:
+            claimName: symfony-api-platform-db-data
+status: {}

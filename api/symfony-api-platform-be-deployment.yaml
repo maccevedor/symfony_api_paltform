@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: symfony-api-platform-be
+  name: symfony-api-platform-be
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: symfony-api-platform-be
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/symfony-api-platform-network: "true"
+        io.kompose.service: symfony-api-platform-be
+    spec:
+      containers:
+        - env:
+            - name: PHP_IDE_CONFIG
+              value: serverName=Docker
+            - name: XDEBUG_CLIENT_HOST
+              value: 172.17.0.1
+            - name: XDEBUG_CLIENT_PORT
+              value: "9003"
+          image: symfony-api-platform-be
+          name: symfony-api-platform-be
+          resources: {}
+          volumeMounts:
+            - mountPath: /appdata/www
+              name: symfony-api-platform-be-claim0
+            - mountPath: /usr/local/etc/php/conf.d/xdebug.ini
+              name: symfony-api-platform-be-claim1
+            - mountPath: /home/appuser/.ssh/id_rsa
+              name: symfony-api-platform-be-claim2
+      restartPolicy: Always
+      volumes:
+        - name: symfony-api-platform-be-claim0
+          persistentVolumeClaim:
+            claimName: symfony-api-platform-be-claim0
+        - name: symfony-api-platform-be-claim1
+          persistentVolumeClaim:
+            claimName: symfony-api-platform-be-claim1
+        - name: symfony-api-platform-be-claim2
+          persistentVolumeClaim:
+            claimName: symfony-api-platform-be-claim2
+status: {}
