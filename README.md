@@ -4,6 +4,7 @@ composer require monolog doctrine phpunit
 composer require --dev browser-kit maker
 composer require api
 // explain andrea
+// it;s wrog 
 composer require symfony/security-core symfony/uid
 composer require lexik/jwt-authentication-bundle
 
