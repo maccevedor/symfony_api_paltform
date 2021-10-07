@@ -3,6 +3,7 @@ composer create-project symfony/skeleton project ^5.1.0
 composer require monolog doctrine phpunit
 composer require --dev browser-kit maker
 composer require api
+// explain andrea
 composer require symfony/security-core symfony/uid
 composer require lexik/jwt-authentication-bundle
 
